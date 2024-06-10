@@ -56,6 +56,15 @@ app.put("/expenses", (req, res) => {
   }
 });
 
+app.delete("/expenses/:id", (req, res) => {
+  const userId = parseInt(req.params.id);
+  const findIndex = expenses.findIndex((user) => user.id === userId);
+  if (findIndex !== -1) {
+    expenses.splice(findIndex, 1);
+    res.json({ success: true, message: "User successfully deleted " });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
